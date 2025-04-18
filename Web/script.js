@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const canvas = document.getElementById('matrix-canvas');
 const ctx = canvas.getContext('2d');
-const width = window.innerWidth;
-const height = window.innerHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 class Symbol {
     constructor(x, y, fontSize, canvasHeight) {
