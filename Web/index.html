@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password generator</title>
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="matrix-canvas"></canvas>
+
+    <div>
+        <h1>Password Generator</h1>
+        <!-- Settings section -->
+        <div>
+            <h2>Settings</h2>
+            <!-- Password length slider -->
+            <label for="length">Password Length: <span id="length-value">16</span></label>
+            <input type="range" id="length" min="4" max="50" value="16">
+            <!-- Include Uppercase Letters -->
+            <label for="uppercase">Include Uppercase Letters</label>
+            <input type="checkbox" id="uppercase" checked>
+            <!-- Include Lowercase Letters -->
+            <label for="lowercase">Include Lowercase Letters</label>
+            <input type="checkbox" id="lowercase" checked>
+            <!-- Include Numbers -->
+            <label for="numbers">Include Numbers</label>
+            <input type="checkbox" id="numbers" checked>
+            <!-- Include Symbols -->
+            <label for="symbols">Include Symbols</label>
+            <input type="checkbox" id="symbols" checked>
+        </div>
+        <!-- Password section -->
+        <div id="password-section">
+            <h2>Generated Password</h2>
+            <input type="text" id="password" readonly>
+            <div class="password-buttons">
+                <button id="copy-btn">Copy Password</button>
+                <button id="generate-btn">Generate New</button>
+            </div>
+            <p id="copy-message" class="hidden">Password copied to clipboard!</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
