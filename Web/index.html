@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password generator</title>
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Turret+Road:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,20 +22,28 @@
             <label for="length">Password Length: <span id="length-value">16</span></label>
             <input type="range" id="length" min="4" max="50" value="16">
             <!-- Include Uppercase Letters -->
-            <label for="uppercase">Include Uppercase Letters</label>
-            <input type="checkbox" id="uppercase" checked>
+            <div class="option-row">
+                <input type="checkbox" id="uppercase" checked>
+                <label for="uppercase">Include Uppercase Letters</label>
+            </div>
             <!-- Include Lowercase Letters -->
-            <label for="lowercase">Include Lowercase Letters</label>
-            <input type="checkbox" id="lowercase" checked>
+            <div class="option-row">
+                <input type="checkbox" id="lowercase" checked>
+                <label for="lowercase">Include Lowercase Letters</label>
+            </div>
             <!-- Include Numbers -->
-            <label for="numbers">Include Numbers</label>
-            <input type="checkbox" id="numbers" checked>
+            <div class="option-row">
+                <input type="checkbox" id="numbers" checked>
+                <label for="numbers">Include Numbers</label>
+            </div>
             <!-- Include Symbols -->
-            <label for="symbols">Include Symbols</label>
-            <input type="checkbox" id="symbols" checked>
+            <div class="option-row">
+                <input type="checkbox" id="symbols" checked>
+                <label for="symbols">Include Symbols</label>
+            </div>
         </div>
         <!-- Password section -->
-        <div id="password-section">
+        <div class="password-section">
             <h2>Generated Password</h2>
             <input type="text" id="password" readonly>
             <div class="password-buttons">

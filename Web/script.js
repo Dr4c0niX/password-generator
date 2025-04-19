@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Make sure at least one character type is selected
         if (chars.length === 0) {
             alert('Please select at least one character type');
-            lowercaseCheckbox.checked = true;
-            chars = lowercaseChars;
+            uppercaseCheckbox.checked = true;
+            chars = uppercaseChars;
         }
         
         // Generate random password
@@ -142,7 +142,7 @@ class Effect {
 
 const effect = new Effect(canvas.width, canvas.height);
 let lastTime = 0;
-const fps = 30;
+const fps = 45;
 const nextFrame = 1000 / fps;
 let timer = 0;
 
