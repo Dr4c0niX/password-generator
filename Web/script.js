@@ -1,5 +1,5 @@
+// Password Generator Script
 document.addEventListener('DOMContentLoaded', function() {
-    // DOM Elements
     const lengthSlider = document.getElementById('length');
     const lengthValue = document.getElementById('length-value');
     const uppercaseCheckbox = document.getElementById('uppercase');
@@ -70,8 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Event listeners
-    
     // Update password length display when slider moves
     lengthSlider.addEventListener('input', updateLengthDisplay);
     
@@ -89,12 +87,14 @@ document.addEventListener('DOMContentLoaded', function() {
     updateLengthDisplay(); // This will update both the length display and generate the password
 });
 
+// Matrix Effect Script -- the following code comes from a youtube tutorial, but I've added some comments to explain it
 const canvas = document.getElementById('matrix-canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 class Symbol {
+    // Constructor to initialize the symbol with its position, font size, and canvas height
     constructor(x, y, fontSize, canvasHeight) {
         this.characters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         this.x = x;
@@ -104,6 +104,7 @@ class Symbol {
         this.canvasHeight = canvasHeight;
     }
 
+    // Draw a random character from the characters string at the symbol's position
     draw(context) {
         this.text = this.characters.charAt(Math.floor(Math.random() * this.characters.length));
         context.fillText(this.text, this.x * this.fontSize, this.y * this.fontSize);
@@ -116,21 +117,24 @@ class Symbol {
 }
 
 class Effect {
+    // Constructor to initialize the effect with canvas dimensions (passed through parameters), font size, and columns
     constructor(canvasWidth, canvasHeight) {
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
-        this.fontSize = 15;
-        this.columns = this.canvasWidth / this.fontSize;
+        this.fontSize = 15; // Font size for the symbols (can be adjusted as you like)
+        this.columns = this.canvasWidth / this.fontSize; // Number of columns based on canvas width and font size
         this.symbols = [];
         this.#initialize();
     }
 
+    // Initialize the symbols by creating a new Symbol object for each column
     #initialize() {
         for (let i = 0; i < this.columns; i++) {
             this.symbols[i] = new Symbol(i, 0, this.fontSize, this.canvasHeight);
         }
     }
 
+    // Resize the canvas and reinitialize the symbols
     resize(width, height) {
         this.canvasWidth = width;
         this.canvasHeight = height;
@@ -140,32 +144,39 @@ class Effect {
     }
 }
 
+
+// Variables for the animation
 const effect = new Effect(canvas.width, canvas.height);
 let lastTime = 0;
 const fps = 45;
 const nextFrame = 1000 / fps;
 let timer = 0;
 
+// Function to animate the matrix effect
 function animate(timeStamp) {
     const deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
+    // Check if enough time has passed to draw the next frame
     if (timer > nextFrame) {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.textAlign = 'center';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#0aff0a';
-        ctx.font = effect.fontSize + 'px monospace';
-        effect.symbols.forEach(symbol => symbol.draw(ctx));
-        timer = 0;
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // Slightly transparent background to create a trailing effect
+        ctx.textAlign = 'center'; // Center the text because the mix of japanese and latin characters is not the same width
+        ctx.fillRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+        ctx.fillStyle = '#0aff0a'; // Green color for the characters
+        ctx.font = effect.fontSize + 'px monospace'; // Set the font size
+        effect.symbols.forEach(symbol => symbol.draw(ctx)); // Draw each symbol
+        timer = 0; // Reset the timer
     } else {
-        timer += deltaTime;
+        timer += deltaTime; // Increment the timer by the time since the last frame
     }
 
+    // Call the animate function again for the next frame (recursive)
     requestAnimationFrame(animate);
 }
 
+// Start the matrix animation
 animate(0);
 
+// Resize the canvas when the window is resized
 window.addEventListener('resize', function() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
